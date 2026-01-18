@@ -11,9 +11,15 @@ class _FirstpageState extends State<Firstpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("First Page"),
-      ),
+      backgroundColor: Color(0xff0A1A0F),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Image.asset('assets/edited/container.png')
+
+          ],
+        ),
+      )
     );
   }
 }
