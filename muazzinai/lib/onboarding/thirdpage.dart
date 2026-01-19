@@ -1,29 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:muazzinai/onboarding/secondpage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:muazzinai/onboarding/firstpage.dart';
+import 'package:muazzinai/onboarding/fourthpage.dart';
 
-class Firstpage extends StatefulWidget {
-  const Firstpage({super.key});
+class ThirdPage extends StatefulWidget {
+  const ThirdPage({super.key});
 
   @override
-  State<Firstpage> createState() => _FirstpageState();
+  State<ThirdPage> createState() => _ThirdPageState();
 }
 
-class _FirstpageState extends State<Firstpage> {
+class _ThirdPageState extends State<ThirdPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0A1208), // To'q yashil fon
+      backgroundColor: const Color(0xFF0A1208),
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('assets/other/container.png'),
-              const SizedBox(height: 40),
-              // 1. Sahifa indikatorlari (Dots)
-              Row(
+        child: Column(
+          // Elementlarni tepadan boshlab terish (markazdan emas)
+          mainAxisAlignment: MainAxisAlignment.center, 
+          children: [
+            // 1. Rasm (Bo'shliqni kamaytirish uchun fit va height qo'shildi)
+            Center(
+              child: Image.asset(
+                "assets/other/games.png",
+                height: 300, // Rasmni balandligini nazorat qilish uchun
+                fit: BoxFit.contain, // Rasmni o'z ramkasiga sig'dirish
+              ),
+            ),
+
+            // Rasm va matn orasidagi masofani qo'lda boshqarish
+            // Agar masofa juda katta bo'lsa, manfiy qiymat ishlatsa ham bo'ladi:
+            Transform.translate(
+              offset: const Offset(0, -20), // Matnni 20 piksel tepaga ko'taradi
+              child: Text(
+                "O‘yin orqali o‘rganish",
+                textAlign: TextAlign.center, // Matnni o'rtaga tekislash
+                style: GoogleFonts.lexend(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Text("Flashcardlar va qiziqarli o‘yinlar\nyordamida so‘z boyligingizni oson va\nmaroqli oshiring.",textAlign: TextAlign.center, style: GoogleFonts.lexend(color: Colors.grey, fontSize: 16),),
+            SizedBox(height: 60,),
+            Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(width: 5),
+                  _buildDot(),
+                  const SizedBox(width: 5),
+                  _buildDot(),
+                  const SizedBox(width: 5),
                   Container(
                     width: 20,
                     height: 8,
@@ -32,18 +61,13 @@ class _FirstpageState extends State<Firstpage> {
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  _buildDot(),
-                  const SizedBox(width: 5),
-                  _buildDot(),
                   
                 ],
               ),
               const SizedBox(height: 40),
-
               // 2. Asosiy "Keyingi" tugmasi
               // Siz so'ragan Row dizayni shu yerga joylashtirildi
-              Row(
+            Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
@@ -63,7 +87,7 @@ class _FirstpageState extends State<Firstpage> {
                       ],
                     ),
                     child: GestureDetector(
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Secondpage())),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Fourthpage())),
                       child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -87,26 +111,12 @@ class _FirstpageState extends State<Firstpage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 60),
-
-              // 3. Pastki matn
-              const Text(
-                'MUAZZIN AI  •  PREMIUM TA\'LIM',
-                style: TextStyle(
-                  color: Colors.white38,
-                  letterSpacing: 2,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
+          ],
         ),
       ),
     );
   }
 
-  // Nuqtalar uchun yordamchi vidjet
   Widget _buildDot() {
     return Container(
       width: 8,
