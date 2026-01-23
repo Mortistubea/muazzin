@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:muazzinai/main.dart';
-import 'package:muazzinai/onboarding/firstpage.dart';
 import 'package:muazzinai/onboarding/thirdpage.dart';
 
 class Secondpage extends StatefulWidget {
